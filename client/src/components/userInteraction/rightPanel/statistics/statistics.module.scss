@@ -1,0 +1,19 @@
+@import '../../../../style/variables.scss';
+
+.wrapper {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  h3 {
+    margin: 0;
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  p {
+    margin: 0;
+    font-size: 14px;
+    span {
+      font-weight: bold;
+    }
+  }
+}

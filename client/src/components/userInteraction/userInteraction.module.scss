@@ -1,0 +1,31 @@
+@import '../../style/variables.scss';
+
+.wrapper {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  padding: 0 12px;
+  .leftPanel {
+    width: 55%;
+    margin-top: 1px;
+    border-right: 1px solid $grey-400;
+    overflow-y: scroll;
+    height: 616px;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $grey-400;
+      outline: 1px solid $grey-400;
+    }
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px $grey-100;
+    }
+  }
+  .rightPanel {
+    width: 45%;
+    margin-left: 10px;
+    margin-top: 10px;
+  }
+}
