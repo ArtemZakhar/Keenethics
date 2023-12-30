@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import { selectAll } from '../../../slices/BicycleSlice';
 
-import classes from './statistics.module.scss';
 import { correctPrice } from '../../leftPanel/bicycleItem';
+import classes from './statistics.module.scss';
 
 export default function Statistics({ status }) {
   const bicycles = useSelector(selectAll);

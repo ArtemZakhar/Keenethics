@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import classes from './bicycleAddForm.module.scss';
 import { useDispatch } from 'react-redux';
 import { fetchBicycles } from '../../../slices/BicycleSlice';
+import classes from './bicycleAddForm.module.scss';
+import request from '../../../../services/request';
 
 export default function BicycleAddForm() {
   const [showMessage, setShowMessage] = useState(false);
@@ -60,16 +61,13 @@ export default function BicycleAddForm() {
       description: descriptionInput,
     };
 
-    const response = await fetch('http://localhost:8000/v1/bicycle', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
+    const response = await request(
+      'http://localhost:8000/v1/bicycle',
+      'POST',
+      JSON.stringify(formData)
+    );
 
-    const message = await response.json();
-    setMessage(message.message);
+    setMessage(response.message);
     setShowMessage(true);
     dispatch(fetchBicycles());
   }
@@ -79,15 +77,22 @@ export default function BicycleAddForm() {
       <form className={classes.form} onSubmit={submitHandler}>
         <div className={classes.information}>
           <div className={classes.input}>
-            <input ref={nameRef} type="text" required id="name" placeholder="Name" />
+            <input ref={nameRef} minLength={5} type="text" required id="name" placeholder="Name" />
           </div>
           <div className={classes.input}>
-            <input ref={typeRef} type="text" required id="type" placeholder="Type" />
+            <input ref={typeRef} minLength={5} type="text" required id="type" placeholder="Type" />
           </div>
         </div>
         <div className={classes.information}>
           <div className={classes.input}>
-            <input ref={colorRef} type="text" required id="color" placeholder="Color" />
+            <input
+              ref={colorRef}
+              minLength={5}
+              type="text"
+              required
+              id="color"
+              placeholder="Color"
+            />
           </div>
           <div className={classes.input}>
             <input ref={wheelRef} type="number" required id="wheel_size" placeholder="Wheel size" />
@@ -99,6 +104,7 @@ export default function BicycleAddForm() {
           </div>
           <div className={classes.input}>
             <input
+              minLength={5}
               ref={idRef}
               type="number"
               required

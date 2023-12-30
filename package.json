@@ -10,7 +10,7 @@
     "buildClient": "cd client && npm run build",
     "clientInstall": "cd client&& npm install ",
     "serverInstall": "cd server&& npm install",
-    "watch": "concurrently \"npm run server\"&& npm run client",
+    "watch": "concurrently \"npm run client\" \"npm run server\"",
     "installDep": "concurrently \"npm run serverInstall\"&& npm run clientInstall",
     "build": "concurrently \"npm run buildClient\"&& npm run server"
   },

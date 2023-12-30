@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import classes from './bicycleItem.module.scss';
 import { useDispatch } from 'react-redux';
 import { fetchBicycles } from '../../slices/BicycleSlice';
+import request from '../../../services/request';
 export const correctPrice = (price) => {
   if (price % 1) {
     return price;
@@ -24,24 +25,20 @@ export default function BicycleItem({ bicycle }) {
   const newPrice = correctPrice(price);
 
   async function handleDelete(id) {
-    await fetch(`http://localhost:8000/v1/bicycle/${id}`, {
-      method: 'DELETE',
-    });
+    await request(`http://localhost:8000/v1/bicycle/${id}`, 'DELETE');
 
     dispatch(fetchBicycles());
   }
 
   async function selectHandler(e, id) {
     setSelect(e.target.value);
-    await fetch(`http://localhost:8000/v1/bicycle/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ status: e.target.value }),
-    }).then(() => {
-      dispatch(fetchBicycles());
-    });
+    await request(
+      `http://localhost:8000/v1/bicycle/${id}`,
+      'PUT',
+      JSON.stringify({ status: e.target.value })
+    );
+
+    dispatch(fetchBicycles());
   }
 
   let borderBox;
