@@ -8,10 +8,10 @@ export default function UserInteraction() {
 
   return (
     <div className={classes.wrapper}>
-      <BicycleList /* changeStatus={handleStatus} */ />
+      <BicycleList />
       <div className={classes.rightPanel}>
         <BicycleAddForm />
-        <Statistics /* status={status} */ />
+        <Statistics/>
       </div>
     </div>
   );

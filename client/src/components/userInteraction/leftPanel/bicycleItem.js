@@ -3,6 +3,7 @@ import classes from './bicycleItem.module.scss';
 import { useDispatch } from 'react-redux';
 import { fetchBicycles } from '../../slices/BicycleSlice';
 import request from '../../../services/request';
+
 export const correctPrice = (price) => {
   if (price % 1) {
     return price;
