@@ -25,7 +25,7 @@ async function removeItemById(idNum) {
   });
 }
 
-async function updateBicycle(data, idN) {
+async function updateBicycleStatus(data, idN) {
   await bicycles.findOneAndUpdate(
     {
       id: idN,
@@ -39,4 +39,4 @@ async function updateBicycle(data, idN) {
   return updated;
 }
 
-module.exports = { getAllBicycles, addNewBicycle, removeItemById, updateBicycle };
+module.exports = { getAllBicycles, addNewBicycle, removeItemById, updateBicycleStatus };

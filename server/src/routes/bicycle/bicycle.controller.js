@@ -2,7 +2,7 @@ const {
   getAllBicycles,
   addNewBicycle,
   removeItemById,
-  updateBicycle,
+  updateBicycleStatus,
 } = require('../../models/bicycles.model');
 
 async function httpGetAllBicycles(req, res) {
@@ -52,7 +52,7 @@ async function httpUpdateBicycle(req, res) {
   const data = req.body;
   const id = req.params.id;
 
-  const newItem = await updateBicycle(data, id);
+  const newItem = await updateBicycleStatus(data, id);
   return res.status(200).json({
     message: 'Updated',
     newItem,
