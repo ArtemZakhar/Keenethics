@@ -17,3 +17,38 @@ const store = configureStore({
 });
 
 export default store;
+
+ */ export const store = configureStore({
+  reducer: {
+    auth: persistedUserReducer,
+    boards: boardsReducer,
+    columns: ColumnsReducer,
+    cards: CardsReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+const persistConfig = {
+  key: 'root',
+  version: 1,
+  storage,
+  whitelist: ['token', 'refreshToken'],
+};
+
+const persistedUserReducer = persistReducer(persistConfig, userReducer);
+
+export const store = configureStore({
+  reducer: {
+    auth: persistedUserReducer,
+    boards: boardsReducer,
+    columns: ColumnsReducer,
+    cards: CardsReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERS  */
